@@ -16,7 +16,7 @@ export default function TopBar() {
   return (
     <header className="kn-topbar">
       <NavLink to="/" className="kn-topbar__brand" onClick={() => setMenuOpen(false)}>
-        KodNest Premium
+        Job Notification Tracker
       </NavLink>
 
       <nav className={`kn-topbar__nav ${menuOpen ? "kn-topbar__nav--open" : ""}`}>
