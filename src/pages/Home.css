@@ -1,0 +1,25 @@
+.kn-landing {
+  max-width: var(--kn-text-max-width);
+  padding: var(--kn-space-5) 0;
+}
+
+.kn-landing__headline {
+  font-family: var(--kn-font-serif);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--kn-text);
+  line-height: 1.25;
+  margin: 0 0 var(--kn-space-2) 0;
+}
+
+.kn-landing__subtext {
+  font-size: var(--kn-body-size);
+  line-height: var(--kn-body-line);
+  color: var(--kn-muted);
+  margin: 0 0 var(--kn-space-4) 0;
+}
+
+.kn-landing .kn-btn {
+  margin-top: var(--kn-space-2);
+}

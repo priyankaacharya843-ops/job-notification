@@ -16,7 +16,7 @@ export default function TopBar() {
   return (
     <header className="kn-topbar">
       <NavLink to="/" className="kn-topbar__brand" onClick={() => setMenuOpen(false)}>
-        Job Notification Tracker
+        KodNest Premium
       </NavLink>
 
       <nav className={`kn-topbar__nav ${menuOpen ? "kn-topbar__nav--open" : ""}`}>
@@ -33,6 +33,12 @@ export default function TopBar() {
           </NavLink>
         ))}
       </nav>
+
+      <div className="kn-topbar__actions">
+        <button type="button" className="kn-topbar__action">Share</button>
+        <button type="button" className="kn-topbar__action">Upgrade</button>
+        <button type="button" className="kn-topbar__action kn-topbar__action--primary">Publish</button>
+      </div>
 
       <button
         type="button"
