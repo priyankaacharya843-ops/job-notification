@@ -1,0 +1,4 @@
+.kn-placeholder {
+  max-width: var(--kn-text-max-width);
+  padding: var(--kn-space-3) 0;
+}

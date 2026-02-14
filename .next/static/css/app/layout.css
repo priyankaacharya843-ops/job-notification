@@ -1,0 +1,233 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./app/components/TopBar.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+/* TopBar — KodNest Premium Build System */
+
+.kn-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--kn-space-2) var(--kn-space-4);
+  background: var(--kn-bg);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+  min-height: 56px;
+}
+
+.kn-topbar__brand {
+  font-family: var(--kn-font-serif);
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: var(--kn-text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.kn-topbar__brand:hover {
+  color: var(--kn-accent);
+  transition: color var(--kn-transition);
+}
+
+.kn-topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--kn-space-3);
+}
+
+.kn-topbar__link {
+  font-family: var(--kn-font-sans);
+  font-size: 0.9375rem;
+  color: var(--kn-text);
+  text-decoration: none;
+  padding: var(--kn-space-1) 0;
+  position: relative;
+  transition: color var(--kn-transition);
+}
+
+.kn-topbar__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--kn-accent);
+  transform: scaleX(0);
+  transition: transform var(--kn-transition);
+}
+
+.kn-topbar__link:hover {
+  color: var(--kn-accent);
+}
+
+.kn-topbar__link.kn-topbar__link--active {
+  color: var(--kn-accent);
+}
+
+.kn-topbar__link.kn-topbar__link--active::after {
+  transform: scaleX(1);
+}
+
+.kn-topbar__menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: var(--kn-radius);
+  background: var(--kn-bg);
+  color: var(--kn-text);
+  cursor: pointer;
+  transition: border-color var(--kn-transition), background var(--kn-transition);
+}
+
+.kn-topbar__menu-btn:hover {
+  border-color: var(--kn-accent);
+  background: rgba(139, 0, 0, 0.04);
+}
+
+.kn-topbar__menu-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .kn-topbar__nav {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--kn-space-2);
+    background: var(--kn-bg);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.08);
+    gap: 0;
+    z-index: 100;
+    transform: translateY(-100%);
+    visibility: hidden;
+    opacity: 0;
+    transition: transform var(--kn-transition), opacity var(--kn-transition), visibility var(--kn-transition);
+  }
+
+  .kn-topbar__nav.kn-topbar__nav--open {
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .kn-topbar__link {
+    padding: var(--kn-space-2);
+    border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+  }
+
+  .kn-topbar__link:last-child {
+    border-bottom: none;
+  }
+
+  .kn-topbar__menu-btn {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .kn-topbar__nav {
+    display: flex !important;
+  }
+}
+
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./app/globals.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/* KodNest Premium Build System — Design tokens and base styles */
+
+:root {
+  --kn-bg: #F7F6F3;
+  --kn-text: #111111;
+  --kn-accent: #8B0000;
+  --kn-muted: #6B6B6B;
+  --kn-success: #4A6B4A;
+  --kn-warning: #8B7355;
+
+  --kn-font-serif: "Georgia", "Times New Roman", serif;
+  --kn-font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --kn-body-size: 17px;
+  --kn-body-line: 1.65;
+  --kn-text-max-width: 720px;
+
+  --kn-space-1: 8px;
+  --kn-space-2: 16px;
+  --kn-space-3: 24px;
+  --kn-space-4: 40px;
+  --kn-space-5: 64px;
+
+  --kn-transition: 175ms ease-in-out;
+  --kn-radius: 6px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--kn-font-sans);
+  font-size: var(--kn-body-size);
+  line-height: var(--kn-body-line);
+  color: var(--kn-text);
+  background-color: var(--kn-bg);
+}
+
+.kn-heading {
+  font-family: var(--kn-font-serif);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--kn-text);
+}
+
+.kn-heading--page {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.25;
+  margin: 0 0 var(--kn-space-2) 0;
+}
+
+.kn-subtext {
+  font-size: var(--kn-body-size);
+  line-height: var(--kn-body-line);
+  color: var(--kn-muted);
+  max-width: var(--kn-text-max-width);
+  margin: 0;
+}
+
+.kn-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.kn-layout__main {
+  flex: 1 1;
+  padding: var(--kn-space-4);
+}
+
+@media (max-width: 768px) {
+  .kn-layout__main {
+    padding: var(--kn-space-3);
+  }
+}
+
+.kn-placeholder {
+  max-width: var(--kn-text-max-width);
+  padding: var(--kn-space-3) 0;
+}
+

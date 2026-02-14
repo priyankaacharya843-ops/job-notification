@@ -1,0 +1,16 @@
+.kn-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.kn-layout__main {
+  flex: 1;
+  padding: var(--kn-space-4);
+}
+
+@media (max-width: 768px) {
+  .kn-layout__main {
+    padding: var(--kn-space-3);
+  }
+}
