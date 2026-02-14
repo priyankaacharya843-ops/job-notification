@@ -1,5 +1,5 @@
-import Link from "next/link";
-import "./not-found.css";
+import { Link } from "react-router-dom";
+import "./NotFound.css";
 
 export default function NotFound() {
   return (
@@ -8,7 +8,7 @@ export default function NotFound() {
       <p className="kn-not-found__subtext">
         The page you’re looking for doesn’t exist or has been moved.
       </p>
-      <Link href="/" className="kn-not-found__link">
+      <Link to="/" className="kn-not-found__link">
         Back to home
       </Link>
     </div>
