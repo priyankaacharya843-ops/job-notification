@@ -59,6 +59,35 @@ function pick<T>(arr: T[], index: number): T {
   return arr[index % arr.length];
 }
 
+// Real career page URLs so "Apply" opens a valid site (not "site can't be reached")
+const COMPANY_CAREERS_URL: Record<string, string> = {
+  "Infosys": "https://www.infosys.com/careers.html",
+  "TCS": "https://www.tcs.com/careers",
+  "Wipro": "https://careers.wipro.com/",
+  "Accenture": "https://www.accenture.com/in-en/careers",
+  "Capgemini": "https://www.capgemini.com/in-en/careers/",
+  "Cognizant": "https://www.cognizant.com/in/en/careers",
+  "IBM": "https://www.ibm.com/in-en/careers",
+  "Oracle": "https://www.oracle.com/in/corporate/careers/",
+  "SAP": "https://www.sap.com/india/about/careers.html",
+  "Dell": "https://jobs.dell.com/",
+  "Amazon": "https://www.amazon.jobs/en/",
+  "Flipkart": "https://www.flipkartcareers.com/",
+  "Swiggy": "https://careers.swiggy.com/",
+  "Razorpay": "https://razorpay.com/jobs/",
+  "PhonePe": "https://www.phonepe.com/careers/",
+  "Paytm": "https://paytm.com/careers/",
+  "Zoho": "https://www.zoho.com/careers/",
+  "Freshworks": "https://www.freshworks.com/company/careers/",
+  "Postman": "https://www.postman.com/company/careers/",
+  "BrowserStack": "https://www.browserstack.com/careers",
+  "Thoughtworks": "https://www.thoughtworks.com/careers",
+};
+
+function getApplyUrl(company: string, _index: number): string {
+  return COMPANY_CAREERS_URL[company] ?? "https://www.linkedin.com/jobs/";
+}
+
 export function buildJobs(): Job[] {
   const jobs: Job[] = [];
   const modes = ["Remote", "Hybrid", "Onsite"] as const;
@@ -66,10 +95,11 @@ export function buildJobs(): Job[] {
   const sources = ["LinkedIn", "Naukri", "Indeed"] as const;
 
   for (let i = 0; i < 60; i++) {
+    const company = pick(companies, i);
     jobs.push({
       id: `job-${i + 1}`,
       title: pick(roles, i),
-      company: pick(companies, i),
+      company,
       location: pick(locations, i),
       mode: pick(modes, i),
       experience: pick(experiences, i),
@@ -77,7 +107,7 @@ export function buildJobs(): Job[] {
       source: pick(sources, i),
       postedDaysAgo: i % 11,
       salaryRange: pick(salaryRanges, i),
-      applyUrl: `https://careers.${pick(companies, i).toLowerCase().replace(/[^a-z0-9]/g, "")}.com/jobs/${i + 1}`,
+      applyUrl: getApplyUrl(company, i),
       description: pick(descriptions, i),
     });
   }

@@ -2,12 +2,15 @@ import "./FilterBar.css";
 
 export type SortOption = "Latest" | "Oldest" | "Match Score" | "Salary (high)" | "Salary (low)";
 
+export type StatusFilter = "" | "Not Applied" | "Applied" | "Rejected" | "Selected";
+
 export interface FilterState {
   keyword: string;
   location: string;
   mode: string;
   experience: string;
   source: string;
+  status: StatusFilter;
   sort: SortOption;
 }
 
@@ -19,6 +22,7 @@ const LOCATIONS = [
 const MODES = ["", "Remote", "Hybrid", "Onsite"];
 const EXPERIENCES = ["", "Fresher", "0-1", "1-3", "3-5"];
 const SOURCES = ["", "LinkedIn", "Naukri", "Indeed"];
+const STATUS_OPTIONS: StatusFilter[] = ["", "Not Applied", "Applied", "Rejected", "Selected"];
 const SORT_OPTIONS: SortOption[] = ["Latest", "Oldest", "Match Score", "Salary (high)", "Salary (low)"];
 
 type Props = {
@@ -82,6 +86,17 @@ export default function FilterBar({ filters, onFilterChange }: Props) {
       >
         <option value="">All sources</option>
         {SOURCES.filter(Boolean).map((s) => (
+          <option key={s} value={s}>{s}</option>
+        ))}
+      </select>
+      <select
+        className="kn-filter-bar__select"
+        value={filters.status}
+        onChange={(e) => update({ status: e.target.value as StatusFilter })}
+        aria-label="Filter by status"
+      >
+        <option value="">All</option>
+        {STATUS_OPTIONS.filter(Boolean).map((s) => (
           <option key={s} value={s}>{s}</option>
         ))}
       </select>

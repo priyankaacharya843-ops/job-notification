@@ -34,3 +34,23 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.kn-toast {
+  position: fixed;
+  bottom: var(--kn-space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--kn-space-2) var(--kn-space-3);
+  background: var(--kn-text);
+  color: var(--kn-bg);
+  font-size: 0.875rem;
+  border-radius: var(--kn-radius);
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.15);
+  z-index: 1001;
+  animation: kn-toast-in 0.2s ease-out;
+}
+
+@keyframes kn-toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}

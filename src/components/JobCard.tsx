@@ -1,13 +1,18 @@
 import type { Job } from "../types/job";
+import type { JobStatus } from "../types/status";
 import { isJobSaved, saveJobId, unsaveJobId } from "../utils/savedJobs";
+import { getJobStatus, setJobStatus } from "../utils/jobStatus";
+import { getMatchScoreBadgeClass } from "../utils/matchScore";
 import "./JobCard.css";
 
 type Props = {
   job: Job;
   onView: (job: Job) => void;
   onSaveChange?: () => void;
+  onStatusChange?: (status: JobStatus) => void;
   showUnsave?: boolean;
   matchScore?: number | null;
+  status?: JobStatus;
 };
 
 function postedLabel(days: number): string {
@@ -16,10 +21,15 @@ function postedLabel(days: number): string {
   return `${days} days ago`;
 }
 
-import { getMatchScoreBadgeClass } from "../utils/matchScore";
+const STATUS_OPTIONS: JobStatus[] = ["Not Applied", "Applied", "Rejected", "Selected"];
 
-export default function JobCard({ job, onView, onSaveChange, showUnsave, matchScore }: Props) {
+function statusSlug(s: JobStatus): string {
+  return s === "Not Applied" ? "not-applied" : s.toLowerCase();
+}
+
+export default function JobCard({ job, onView, onSaveChange, showUnsave, matchScore, status: statusProp, onStatusChange }: Props) {
   const saved = isJobSaved(job.id);
+  const status = statusProp ?? getJobStatus(job.id);
   const scoreClass = matchScore != null ? getMatchScoreBadgeClass(matchScore) : null;
 
   const handleSave = () => {
@@ -30,6 +40,11 @@ export default function JobCard({ job, onView, onSaveChange, showUnsave, matchSc
 
   const handleApply = () => {
     window.open(job.applyUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const handleStatusChange = (newStatus: JobStatus) => {
+    setJobStatus(job.id, newStatus);
+    onStatusChange?.(newStatus);
   };
 
   return (
@@ -51,10 +66,27 @@ export default function JobCard({ job, onView, onSaveChange, showUnsave, matchSc
               {matchScore}
             </span>
           )}
+          <span className={"kn-job-card__status-badge kn-job-card__status-badge--" + statusSlug(status)}>
+            {status}
+          </span>
           <span className={"kn-job-card__source kn-job-card__source--" + job.source.toLowerCase()}>
             {job.source}
           </span>
           <span className="kn-job-card__posted">{postedLabel(job.postedDaysAgo)}</span>
+        </div>
+        <div className="kn-job-card__status-group">
+          {STATUS_OPTIONS.map((s) => (
+            <button
+              key={s}
+              type="button"
+              className={"kn-job-card__status-btn " + (status === s ? "kn-job-card__status-btn--active kn-job-card__status-btn--" + statusSlug(s) : "")}
+              onClick={() => handleStatusChange(s)}
+              aria-pressed={status === s}
+              title="Status is saved automatically. Use Applied after you apply."
+            >
+              {s}
+            </button>
+          ))}
         </div>
       </div>
       <div className="kn-job-card__actions">

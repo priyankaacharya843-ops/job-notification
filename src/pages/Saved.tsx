@@ -1,14 +1,18 @@
 import { useState, useCallback, useEffect } from "react";
 import { JOBS } from "../data/jobs";
 import { getSavedJobIds } from "../utils/savedJobs";
+import { getStatusMap } from "../utils/jobStatus";
 import JobCard from "../components/JobCard";
 import JobModal from "../components/JobModal";
 import type { Job } from "../types/job";
+import type { JobStatus } from "../types/status";
 import "./Saved.css";
 
 export default function Saved() {
   const [savedJobs, setSavedJobs] = useState<Job[]>([]);
   const [modalJob, setModalJob] = useState<Job | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+  const statusMap = getStatusMap();
 
   const refresh = useCallback(() => {
     const ids = getSavedJobIds();
@@ -23,6 +27,11 @@ export default function Saved() {
   const handleSaveChange = useCallback(() => {
     refresh();
   }, [refresh]);
+
+  const handleStatusChange = useCallback((status: JobStatus) => {
+    setToast(`Status updated: ${status}`);
+    setTimeout(() => setToast(null), 2500);
+  }, []);
 
   return (
     <div className="kn-saved">
@@ -46,13 +55,21 @@ export default function Saved() {
               job={job}
               onView={setModalJob}
               onSaveChange={handleSaveChange}
+              onStatusChange={handleStatusChange}
               showUnsave
+              status={statusMap.get(job.id) ?? "Not Applied"}
             />
           ))}
         </div>
       )}
 
       <JobModal job={modalJob} onClose={() => setModalJob(null)} />
+
+      {toast && (
+        <div className="kn-toast" role="status" aria-live="polite">
+          {toast}
+        </div>
+      )}
     </div>
   );
 }

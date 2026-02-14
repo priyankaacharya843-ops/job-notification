@@ -5,6 +5,7 @@ import { JOBS } from "../data/jobs";
 import { filterAndSortJobs } from "../utils/filterJobs";
 import { getPreferences } from "../utils/preferences";
 import { computeMatchScore } from "../utils/matchScore";
+import { getStatusMap } from "../utils/jobStatus";
 import FilterBar, { type FilterState, type SortOption } from "../components/FilterBar";
 import JobCard from "../components/JobCard";
 import JobModal from "../components/JobModal";
@@ -15,6 +16,7 @@ const defaultFilters: FilterState = {
   mode: "",
   experience: "",
   source: "",
+  status: "",
   sort: "Latest" as SortOption,
 };
 
@@ -24,6 +26,9 @@ export default function Dashboard() {
   const [saveCounter, setSaveCounter] = useState(0);
   const [showOnlyMatches, setShowOnlyMatches] = useState(false);
   const [prefs, setPrefs] = useState(() => getPreferences());
+  const [statusCounter, setStatusCounter] = useState(0);
+  const [toast, setToast] = useState<string | null>(null);
+  const statusMap = useMemo(() => getStatusMap(), [statusCounter]);
 
   useEffect(() => {
     const handler = () => setPrefs(getPreferences());
@@ -39,8 +44,8 @@ export default function Dashboard() {
   }, [prefs, saveCounter]);
 
   const filteredByBar = useMemo(
-    () => filterAndSortJobs(JOBS, filters, { scoreMap }),
-    [filters, scoreMap]
+    () => filterAndSortJobs(JOBS, filters, { scoreMap, statusMap }),
+    [filters, scoreMap, statusMap]
   );
 
   const jobs = useMemo(() => {
@@ -50,6 +55,11 @@ export default function Dashboard() {
   }, [filteredByBar, showOnlyMatches, prefs, scoreMap]);
 
   const handleSaveChange = useCallback(() => setSaveCounter((c) => c + 1), []);
+  const handleStatusChange = useCallback((status: string) => {
+    setStatusCounter((c) => c + 1);
+    setToast(`Status updated: ${status}`);
+    setTimeout(() => setToast(null), 2500);
+  }, []);
 
   const noPreferences = !prefs || (prefs && !hasAnyPreference(prefs));
   const emptyBecauseMatch = showOnlyMatches && prefs && filteredByBar.length > 0 && jobs.length === 0;
@@ -101,13 +111,21 @@ export default function Dashboard() {
               job={job}
               onView={setModalJob}
               onSaveChange={handleSaveChange}
+              onStatusChange={handleStatusChange}
               matchScore={prefs ? scoreMap.get(job.id) ?? 0 : null}
+              status={statusMap.get(job.id) ?? "Not Applied"}
             />
           ))
         )}
       </div>
 
       <JobModal job={modalJob} onClose={() => setModalJob(null)} />
+
+      {toast && (
+        <div className="kn-toast" role="status" aria-live="polite">
+          {toast}
+        </div>
+      )}
     </div>
   );
 }

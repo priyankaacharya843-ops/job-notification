@@ -81,6 +81,82 @@
   color: var(--kn-muted);
 }
 
+.kn-job-card__status-badge {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 2px var(--kn-space-1);
+  border-radius: 4px;
+}
+
+.kn-job-card__status-badge--not-applied {
+  background: rgba(17, 17, 17, 0.08);
+  color: var(--kn-text);
+}
+
+.kn-job-card__status-badge--applied {
+  background: rgba(10, 102, 194, 0.15);
+  color: #0a66c2;
+}
+
+.kn-job-card__status-badge--rejected {
+  background: rgba(139, 0, 0, 0.12);
+  color: var(--kn-accent);
+}
+
+.kn-job-card__status-badge--selected {
+  background: rgba(74, 107, 74, 0.2);
+  color: var(--kn-success);
+}
+
+.kn-job-card__status-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kn-space-1);
+  margin-top: var(--kn-space-2);
+}
+
+.kn-job-card__status-btn {
+  font-size: 0.75rem;
+  padding: 4px var(--kn-space-2);
+  border: 1px solid rgba(17, 17, 17, 0.15);
+  border-radius: 4px;
+  background: var(--kn-bg);
+  color: var(--kn-text);
+  cursor: pointer;
+  transition: border-color var(--kn-transition), background var(--kn-transition), color var(--kn-transition);
+}
+
+.kn-job-card__status-btn:hover {
+  border-color: var(--kn-accent);
+}
+
+.kn-job-card__status-btn--active {
+  font-weight: 500;
+}
+
+.kn-job-card__status-btn--active.kn-job-card__status-btn--not-applied {
+  background: rgba(17, 17, 17, 0.08);
+  border-color: rgba(17, 17, 17, 0.2);
+}
+
+.kn-job-card__status-btn--active.kn-job-card__status-btn--applied {
+  background: rgba(10, 102, 194, 0.12);
+  border-color: #0a66c2;
+  color: #0a66c2;
+}
+
+.kn-job-card__status-btn--active.kn-job-card__status-btn--rejected {
+  background: rgba(139, 0, 0, 0.08);
+  border-color: var(--kn-accent);
+  color: var(--kn-accent);
+}
+
+.kn-job-card__status-btn--active.kn-job-card__status-btn--selected {
+  background: rgba(74, 107, 74, 0.15);
+  border-color: var(--kn-success);
+  color: var(--kn-success);
+}
+
 .kn-match-badge {
   font-size: 0.75rem;
   font-weight: 600;

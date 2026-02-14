@@ -4,6 +4,7 @@ import { getPreferences } from "../utils/preferences";
 import { getStoredDigest, setStoredDigest, getTodayDateString } from "../utils/digestStorage";
 import { generateDigest } from "../utils/generateDigest";
 import { getMatchScoreBadgeClass } from "../utils/matchScore";
+import { getStatusHistory } from "../utils/jobStatus";
 import type { Job } from "../types/job";
 import type { StoredDigest } from "../types/digest";
 import "./Digest.css";
@@ -11,6 +12,11 @@ import "./Digest.css";
 function formatDisplayDate(isoDate: string): string {
   const d = new Date(isoDate + "T12:00:00");
   return d.toLocaleDateString("en-IN", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+}
+
+function formatStatusChangedAt(isoDate: string): string {
+  const d = new Date(isoDate);
+  return d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
 }
 
 function digestToPlainText(digest: StoredDigest, jobsById: Map<string, Job>): string {
@@ -46,6 +52,7 @@ export default function Digest() {
   );
 
   const jobsById = useMemo(() => new Map(JOBS.map((j) => [j.id, j])), []);
+  const statusHistory = getStatusHistory();
 
   const handleGenerate = useCallback(() => {
     // Always regenerate so changing preferences and clicking again produces a new digest
@@ -97,6 +104,28 @@ export default function Digest() {
       <p className="kn-subtext kn-digest__intro">
         Your daily digest, delivered at 9AM.
       </p>
+
+      {statusHistory.length > 0 && (
+        <section className="kn-digest__status-section" aria-label="Recent status updates">
+          <h2 className="kn-digest__status-title">Recent Status Updates</h2>
+          <ul className="kn-digest__status-list">
+            {statusHistory.map((entry, i) => {
+              const job = jobsById.get(entry.jobId);
+              if (!job) return null;
+              return (
+                <li key={`${entry.jobId}-${entry.changedAt}-${i}`} className="kn-digest__status-item">
+                  <span className="kn-digest__status-job">{job.title}</span>
+                  <span className="kn-digest__status-company">{job.company}</span>
+                  <span className={"kn-digest__status-badge kn-digest__status-badge--" + (entry.status === "Not Applied" ? "not-applied" : entry.status.toLowerCase())}>
+                    {entry.status}
+                  </span>
+                  <span className="kn-digest__status-date">{formatStatusChangedAt(entry.changedAt)}</span>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )}
 
       <p className="kn-digest__demo-note">
         Demo Mode: Daily 9AM trigger simulated manually.
