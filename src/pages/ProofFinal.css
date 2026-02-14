@@ -1,0 +1,80 @@
+.kn-proof-final {
+  max-width: 640px;
+  padding: var(--kn-space-4) 0;
+}
+
+.kn-proof-final__intro {
+  margin-bottom: var(--kn-space-4);
+}
+
+.kn-proof-final__section {
+  margin-bottom: var(--kn-space-4);
+}
+
+.kn-proof-final__section-title {
+  font-family: var(--kn-font-serif);
+  font-size: 1.125rem;
+  margin: 0 0 var(--kn-space-2) 0;
+}
+
+.kn-proof-final__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.kn-proof-final__step {
+  display: flex;
+  align-items: center;
+  gap: var(--kn-space-2);
+  padding: var(--kn-space-2) 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+  font-size: 0.9375rem;
+}
+
+.kn-proof-final__step:last-child {
+  border-bottom: none;
+}
+
+.kn-proof-final__step-status {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 2px var(--kn-space-1);
+  border-radius: 4px;
+  min-width: 72px;
+  text-align: center;
+}
+
+.kn-proof-final__step-status[data-status="Completed"] {
+  background: rgba(74, 107, 74, 0.15);
+  color: var(--kn-success);
+}
+
+.kn-proof-final__step-status[data-status="Pending"] {
+  background: rgba(17, 17, 17, 0.06);
+  color: var(--kn-muted);
+}
+
+.kn-proof-final__step-label {
+  color: var(--kn-text);
+}
+
+.kn-proof-final__field {
+  margin-bottom: var(--kn-space-3);
+}
+
+.kn-proof-final__field .kn-input {
+  max-width: 100%;
+}
+
+.kn-proof-final__error {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--kn-accent);
+  margin-top: var(--kn-space-1);
+}
+
+.kn-proof-final__actions {
+  margin-top: var(--kn-space-4);
+}

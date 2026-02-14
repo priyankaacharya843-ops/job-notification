@@ -38,3 +38,36 @@
   color: var(--kn-muted);
   margin: 0;
 }
+
+.kn-ship__status-badge {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 6px var(--kn-space-2);
+  border-radius: 6px;
+  margin-bottom: var(--kn-space-3);
+  border: 1px solid transparent;
+}
+
+.kn-ship__status-badge[data-status="Not Started"] {
+  background: rgba(17, 17, 17, 0.06);
+  color: var(--kn-muted);
+}
+
+.kn-ship__status-badge[data-status="In Progress"] {
+  background: rgba(139, 0, 0, 0.08);
+  color: var(--kn-accent);
+  border-color: rgba(139, 0, 0, 0.2);
+}
+
+.kn-ship__status-badge[data-status="Shipped"] {
+  background: rgba(74, 107, 74, 0.15);
+  color: var(--kn-success);
+}
+
+.kn-ship--shipped .kn-ship__shipped-message {
+  font-family: var(--kn-font-serif);
+  font-size: 1.125rem;
+  color: var(--kn-text);
+  margin: var(--kn-space-2) 0 0 0;
+}
