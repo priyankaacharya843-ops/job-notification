@@ -65,41 +65,6 @@
   transform: scaleX(1);
 }
 
-.kn-topbar__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--kn-space-2);
-}
-
-.kn-topbar__action {
-  font-family: var(--kn-font-sans);
-  font-size: 0.875rem;
-  padding: var(--kn-space-1) var(--kn-space-2);
-  border: 1px solid rgba(17, 17, 17, 0.15);
-  border-radius: var(--kn-radius);
-  background: var(--kn-bg);
-  color: var(--kn-text);
-  cursor: pointer;
-  transition: border-color var(--kn-transition), background var(--kn-transition), color var(--kn-transition);
-}
-
-.kn-topbar__action:hover {
-  border-color: var(--kn-accent);
-  color: var(--kn-accent);
-}
-
-.kn-topbar__action--primary {
-  background: var(--kn-accent);
-  color: #fff;
-  border-color: var(--kn-accent);
-}
-
-.kn-topbar__action--primary:hover {
-  background: #6d0000;
-  border-color: #6d0000;
-  color: #fff;
-}
-
 /* Hamburger (mobile) */
 .kn-topbar__menu-btn {
   display: none;
@@ -127,10 +92,6 @@
 }
 
 @media (max-width: 768px) {
-  .kn-topbar__actions {
-    display: none;
-  }
-
   .kn-topbar__nav {
     position: fixed;
     top: 56px;

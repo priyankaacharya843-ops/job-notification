@@ -34,12 +34,6 @@ export default function TopBar() {
         ))}
       </nav>
 
-      <div className="kn-topbar__actions">
-        <button type="button" className="kn-topbar__action">Share</button>
-        <button type="button" className="kn-topbar__action">Upgrade</button>
-        <button type="button" className="kn-topbar__action kn-topbar__action--primary">Publish</button>
-      </div>
-
       <button
         type="button"
         className="kn-topbar__menu-btn"
