@@ -1,6 +1,6 @@
 import "./FilterBar.css";
 
-export type SortOption = "Latest" | "Oldest" | "Salary (high)" | "Salary (low)";
+export type SortOption = "Latest" | "Oldest" | "Match Score" | "Salary (high)" | "Salary (low)";
 
 export interface FilterState {
   keyword: string;
@@ -19,7 +19,7 @@ const LOCATIONS = [
 const MODES = ["", "Remote", "Hybrid", "Onsite"];
 const EXPERIENCES = ["", "Fresher", "0-1", "1-3", "3-5"];
 const SOURCES = ["", "LinkedIn", "Naukri", "Indeed"];
-const SORT_OPTIONS: SortOption[] = ["Latest", "Oldest", "Salary (high)", "Salary (low)"];
+const SORT_OPTIONS: SortOption[] = ["Latest", "Oldest", "Match Score", "Salary (high)", "Salary (low)"];
 
 type Props = {
   filters: FilterState;

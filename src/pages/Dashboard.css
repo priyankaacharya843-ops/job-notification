@@ -26,3 +26,32 @@
   color: var(--kn-muted);
   margin: 0;
 }
+
+.kn-dashboard__banner {
+  padding: var(--kn-space-2) var(--kn-space-3);
+  margin-bottom: var(--kn-space-4);
+  background: rgba(17, 17, 17, 0.06);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: var(--kn-radius);
+  font-size: 0.9375rem;
+  color: var(--kn-text);
+}
+
+.kn-dashboard__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kn-space-2);
+  margin-bottom: var(--kn-space-4);
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+
+.kn-dashboard__toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--kn-accent);
+}
+
+.kn-empty-state--premium {
+  padding: var(--kn-space-5) var(--kn-space-4);
+}

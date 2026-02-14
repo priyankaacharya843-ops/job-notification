@@ -7,6 +7,7 @@ type Props = {
   onView: (job: Job) => void;
   onSaveChange?: () => void;
   showUnsave?: boolean;
+  matchScore?: number | null;
 };
 
 function postedLabel(days: number): string {
@@ -15,8 +16,11 @@ function postedLabel(days: number): string {
   return `${days} days ago`;
 }
 
-export default function JobCard({ job, onView, onSaveChange, showUnsave }: Props) {
+import { getMatchScoreBadgeClass } from "../utils/matchScore";
+
+export default function JobCard({ job, onView, onSaveChange, showUnsave, matchScore }: Props) {
   const saved = isJobSaved(job.id);
+  const scoreClass = matchScore != null ? getMatchScoreBadgeClass(matchScore) : null;
 
   const handleSave = () => {
     if (saved) unsaveJobId(job.id);
@@ -42,6 +46,11 @@ export default function JobCard({ job, onView, onSaveChange, showUnsave }: Props
         </div>
         <p className="kn-job-card__salary">{job.salaryRange}</p>
         <div className="kn-job-card__footer">
+          {scoreClass != null && (
+            <span className={"kn-match-badge " + scoreClass} title="Match score">
+              {matchScore}
+            </span>
+          )}
           <span className={"kn-job-card__source kn-job-card__source--" + job.source.toLowerCase()}>
             {job.source}
           </span>

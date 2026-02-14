@@ -19,22 +19,49 @@ function matchesFilter(job: Job, f: FilterState): boolean {
   return true;
 }
 
-function compareBySort(a: Job, b: Job, sort: SortOption): number {
+/** Extract first number from salary string for sort (e.g. "3–5 LPA" -> 3, "₹15k–₹40k" -> 15) */
+function salarySortValue(salaryRange: string): number {
+  const match = salaryRange.match(/(\d+)/);
+  return match ? Number(match[1]) : 0;
+}
+
+function compareBySort(
+  a: Job,
+  b: Job,
+  sort: SortOption,
+  scoreMap?: Map<string, number> | null
+): number {
   switch (sort) {
     case "Latest":
       return a.postedDaysAgo - b.postedDaysAgo;
     case "Oldest":
       return b.postedDaysAgo - a.postedDaysAgo;
+    case "Match Score": {
+      if (!scoreMap) return a.postedDaysAgo - b.postedDaysAgo;
+      const sa = scoreMap.get(a.id) ?? 0;
+      const sb = scoreMap.get(b.id) ?? 0;
+      return sb - sa;
+    }
     case "Salary (high)":
-      return (b.salaryRange || "").localeCompare(a.salaryRange || "", undefined, { numeric: true });
+      return salarySortValue(b.salaryRange) - salarySortValue(a.salaryRange);
     case "Salary (low)":
-      return (a.salaryRange || "").localeCompare(b.salaryRange || "", undefined, { numeric: true });
+      return salarySortValue(a.salaryRange) - salarySortValue(b.salaryRange);
     default:
       return a.postedDaysAgo - b.postedDaysAgo;
   }
 }
 
-export function filterAndSortJobs(jobs: Job[], filters: FilterState): Job[] {
+export interface FilterOptions {
+  scoreMap?: Map<string, number> | null;
+}
+
+export function filterAndSortJobs(
+  jobs: Job[],
+  filters: FilterState,
+  options?: FilterOptions
+): Job[] {
   const filtered = jobs.filter((j) => matchesFilter(j, filters));
-  return [...filtered].sort((a, b) => compareBySort(a, b, filters.sort));
+  return [...filtered].sort((a, b) =>
+    compareBySort(a, b, filters.sort, options?.scoreMap)
+  );
 }
