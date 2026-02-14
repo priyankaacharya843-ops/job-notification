@@ -8,6 +8,8 @@ const NAV_ITEMS = [
   { path: "/digest", label: "Digest" },
   { path: "/settings", label: "Settings" },
   { path: "/proof", label: "Proof" },
+  { path: "/jt/07-test", label: "Test" },
+  { path: "/jt/08-ship", label: "Ship" },
 ];
 
 export default function TopBar() {

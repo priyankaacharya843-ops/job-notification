@@ -1,0 +1,120 @@
+.kn-test {
+  max-width: 640px;
+  padding: var(--kn-space-4) 0;
+}
+
+.kn-test__intro {
+  margin-bottom: var(--kn-space-4);
+}
+
+.kn-test__summary {
+  padding: var(--kn-space-3);
+  margin-bottom: var(--kn-space-4);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 8px;
+}
+
+.kn-test__count {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--kn-text);
+}
+
+.kn-test__warning {
+  font-size: 0.9375rem;
+  color: var(--kn-warning);
+  margin: var(--kn-space-2) 0 0 0;
+}
+
+.kn-test__list {
+  list-style: none;
+  margin: 0 0 var(--kn-space-4) 0;
+  padding: 0;
+}
+
+.kn-test__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--kn-space-2);
+  padding: var(--kn-space-2) 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+}
+
+.kn-test__item:last-child {
+  border-bottom: none;
+}
+
+.kn-test__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--kn-space-2);
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+}
+
+.kn-test__label input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--kn-accent);
+  flex-shrink: 0;
+}
+
+.kn-test__label-text {
+  font-size: var(--kn-body-size);
+  color: var(--kn-text);
+}
+
+.kn-test__tooltip-wrap {
+  position: relative;
+}
+
+.kn-test__tooltip-btn {
+  font-size: 0.8125rem;
+  color: var(--kn-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.kn-test__tooltip-btn:hover {
+  color: var(--kn-accent);
+}
+
+.kn-test__tooltip {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: var(--kn-space-1);
+  padding: var(--kn-space-2);
+  max-width: 320px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--kn-text);
+  background: #fff;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: var(--kn-radius);
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.08);
+  z-index: 10;
+}
+
+.kn-test__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--kn-space-3);
+}
+
+.kn-test__reset {
+  font-size: 0.875rem;
+}
+
+.kn-test__locked {
+  font-size: 0.9375rem;
+  color: var(--kn-muted);
+}
