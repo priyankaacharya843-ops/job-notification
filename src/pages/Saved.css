@@ -1,0 +1,36 @@
+.kn-saved {
+  max-width: 900px;
+  padding: var(--kn-space-3) 0;
+}
+
+.kn-saved__intro {
+  margin-bottom: var(--kn-space-4);
+}
+
+.kn-saved__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kn-space-3);
+}
+
+.kn-empty-state--premium {
+  padding: var(--kn-space-5) var(--kn-space-4);
+}
+
+.kn-empty-state__heading {
+  font-family: var(--kn-font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin: 0 0 var(--kn-space-2) 0;
+  color: var(--kn-text);
+}
+
+.kn-empty-state__text {
+  font-size: var(--kn-body-size);
+  line-height: var(--kn-body-line);
+  color: var(--kn-muted);
+  margin: 0;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}

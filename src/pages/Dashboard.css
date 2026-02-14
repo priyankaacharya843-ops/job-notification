@@ -1,0 +1,28 @@
+.kn-dashboard {
+  max-width: 900px;
+  padding: var(--kn-space-3) 0;
+}
+
+.kn-dashboard__intro {
+  margin-bottom: var(--kn-space-4);
+}
+
+.kn-dashboard__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--kn-space-3);
+}
+
+.kn-empty-state {
+  padding: var(--kn-space-5) var(--kn-space-3);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  border-radius: 8px;
+}
+
+.kn-empty-state__text {
+  font-size: var(--kn-body-size);
+  color: var(--kn-muted);
+  margin: 0;
+}
